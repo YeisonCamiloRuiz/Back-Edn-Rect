@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    const a = {
+        Email: "micorreo@gmail.com",
+        Name:"Yeison",
+        Phone:432452353,
+        Password:"12345"
+    };
+
+    const b = {
+        Email: "micorreo@gmail.com",
+        Password:"12345"
+    }
+
+    const fetchData = async () => {
+        const response = await fetch('http://localhost:3000/auth/register', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(a)
+        });
+
+        const data = await response.json();
+        console.log(data);
+    };
+
+    const fetchData1 = async () => {
+        const response = await fetch('http://localhost:3000/auth/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(b)
+        });
+
+        const data = await response.json();
+        console.log(data);
+    };
+    </script>
+
+    <button onclick="fetchData()">Regitro</button>
+
+    <button onclick="fetchData1()">Inicair session</button>
+</body>
+</html>
