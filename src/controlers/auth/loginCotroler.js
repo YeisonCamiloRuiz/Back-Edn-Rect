@@ -1,7 +1,7 @@
-import connection from "../config/config.js";
+import connection from "../../config/config.js";
 import bcrypt from "bcrypt";
 import { v4 as uuidv4 } from 'uuid';
-import updateSessionId from "../services/updateSessionService.js";
+import updateSessionId from "../../services/updateSessionService.js";
 
 const login = (email, password) => {
     return new Promise((resolve, reject) => {

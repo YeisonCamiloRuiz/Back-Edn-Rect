@@ -44,10 +44,69 @@
         const data = await response.json();
         console.log(data);
     };
+
+
+    const listMovies = async () => {
+        const response = await fetch('http://localhost:3000/movies/list');
+
+        const data = await response.json();
+        console.log(data);
+    }
+
+    async function insertMovie() {
+    // Datos a enviar en la petición
+    const movieData = {
+        Name: "Película de ejemplo 2 ",
+        Description: "Descripción de la película 2",
+        ImgUrl: "http://example.com/image.jpg 2",
+        Score: 9.0,
+        Comments: "Comentarios de prueba 2 ",
+        Author: "Autor de prueba 2",
+        TrailerUrl: "http://example.com/trailer.mp4 2",
+        Genre: "Acción 2",
+        Duration: 126,
+        ReleaseDate: "2025-01-01-2"
+    };
+
+    try {
+        // Realizar la petición POST con fetch
+        const response = await fetch("http://localhost:3000/movies/insert-movie", {
+            method: "POST", // Método HTTP
+            headers: {
+                "Content-Type": "application/json", // Indica que el cuerpo está en formato JSON
+            },
+            body: JSON.stringify(movieData), // Convierte los datos a JSON
+        });
+
+        // Manejo de la respuesta
+        if (response.ok) {
+            const responseData = await response.json(); // Si el servidor devuelve JSON
+            console.log("Película insertada correctamente:", responseData);
+        } else {
+            console.error("Error al insertar la película:", response.statusText);
+        }
+    } catch (error) {
+        console.error("Error en la petición:", error);
+    }
+    }
+
+    const ById = async () => {
+        const response = await fetch('http://localhost:3000/movies/movie-by-id?Id=2');
+
+        const data = await response.json();
+        console.log(data);
+    }
+
     </script>
 
     <button onclick="fetchData()">Regitro</button>
 
     <button onclick="fetchData1()">Inicair session</button>
+
+    <button onclick="listMovies()">Lista</button>
+
+    <button onclick="insertMovie()">Insertar</button>
+
+    <button onclick="ById()">por Id</button>
 </body>
 </html>

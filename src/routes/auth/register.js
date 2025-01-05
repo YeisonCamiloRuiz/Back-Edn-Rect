@@ -1,7 +1,7 @@
 import express from "express";
-import { validateEmail } from "../middlewares/validateRegister.js";
-import { hassPassword } from "../middlewares/hassPassword.js"
-import register from "../controlers/registerControler.js"
+import { validateEmail } from "../../middlewares/validateRegister.js";
+import { hassPassword } from "../../middlewares/hassPassword.js"
+import register from "../../controlers/auth/registerControler.js"
 import bcrypt from "bcrypt";
 const router = express.Router();
 

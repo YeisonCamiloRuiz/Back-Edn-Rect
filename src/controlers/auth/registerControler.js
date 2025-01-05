@@ -1,6 +1,6 @@
-import connection from "../config/config.js";
-import generateId from "../services/encryptionService.js"
-import  Permissions from "../models/enums/persmission-enum.js"
+import connection from "../../config/config.js";
+import generateId from "../../services/encryptionService.js"
+import  Permissions from "../../models/enums/persmission-enum.js"
 
 const register = async (email, password, userName, phone) => {
     return new Promise((resolve, reject) => {
