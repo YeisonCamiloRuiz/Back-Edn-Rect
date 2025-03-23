@@ -1,5 +1,5 @@
 import express from "express";
-import { getAllMovies } from "../../controlers/movies/moviesControler.js"
+import  getAllMovies  from "../../controlers/movies/moviesControler.js"
 
 const router = express.Router();
 
