@@ -4,10 +4,11 @@ import login from "../../controlers/auth/loginCotroler.js";
 const router = express.Router();
 
 router.post('/login', async (req, res) => {
-    const { Email, Password } = req.body;
+    const { email, password } = req.body;
     
     try {
-        const userSession = await login(Email, Password);
+        console.log(email)
+        const userSession = await login(email, password);
         console.log(userSession + "Hola");
         res.send(userSession);
     } catch (error) {

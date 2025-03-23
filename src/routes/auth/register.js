@@ -6,18 +6,14 @@ import bcrypt from "bcrypt";
 const router = express.Router();
 
 router.post('/register', validateEmail, hassPassword,async (req,res) => {
-    const { Name, Email,Phone,Password } = await req.body;
+    const { name, email,phone,password } = await req.body;
 
     try {
         const salt = await bcrypt.genSalt(10); 
 
+        const hashedPassword = await bcrypt.hash(password, salt);
         
-        const hashedPassword = await bcrypt.hash(Password, salt);
-        
-        await register(Email,hashedPassword,Name,Phone)
-        
-        console.log({ Name, Email, Phone, Password });
-        
+        await register(email,hashedPassword,name,phone)
         res.status(200).send("Se registro corratamente")
         
     } catch (error) {

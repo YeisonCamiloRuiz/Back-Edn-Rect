@@ -1,10 +1,13 @@
 export const hassPassword = (req, res, next) => {
-    const { Password } = req.body;
+    const { password } = req.body;
 
-    if(!Password){
-        res.status(400).send("No exinte contraseña")
-        return;
-    }
+    console.log(req.body)
+
+    // if(!password){
+    //     console.log(password)
+    //     res.status(400).send("No exinte contraseña")
+    //     return;
+    // }
 
     next();
 }

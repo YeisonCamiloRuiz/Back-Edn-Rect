@@ -1,7 +1,10 @@
 import connection from "../../config/config.js";
 import bcrypt from "bcrypt";
-import { v4 as uuidv4 } from 'uuid';
-import updateSessionId from "../../services/updateSessionService.js";
+import jwt from "jsonwebtoken";
+
+import dotenv from "dotenv";
+dotenv.config();
+
 
 const login = (email, password) => {
     return new Promise((resolve, reject) => {
@@ -25,17 +28,13 @@ const login = (email, password) => {
             if (isPasswordValid) {
                 console.log("Inicio de sesión exitoso.");
 
-                const newSessionId = uuidv4();
+                const token = jwt.sign(
+                    { email: user.Email, name: user.Name },
+                    process.env.JWT_SECRET,
+                    { expiresIn: process.env.JWT_EXPIRES_IN }
+                );
 
-                await updateSessionId(email, newSessionId);
-
-                const userSession = {
-                    Name: user.Name,
-                    Email: user.Email,
-                    SessionId: newSessionId
-                };
-
-                resolve(userSession);
+                resolve({token});
             } else {
                 console.log("La contraseña es incorrecta.");
                 reject('Contraseña incorrecta');
