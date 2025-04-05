@@ -34,7 +34,14 @@ const login = (email, password) => {
                     { expiresIn: process.env.JWT_EXPIRES_IN }
                 );
 
-                resolve({token});
+                const refreshToken = jwt.sign(
+                    { email: user.Email, name: user.Name },
+                    process.env.REFRESH_SECRET,
+                    { expiresIn: process.env.JWT_REFRESH_EXPIRES_IN }
+                  );
+                  
+
+                resolve({token,refreshToken});
             } else {
                 console.log("La contraseña es incorrecta.");
                 reject('Contraseña incorrecta');
